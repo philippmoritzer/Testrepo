@@ -365,7 +365,109 @@ code {
           : 'default'
     });
   </script>
-<h3 id="hallo">Hallo</h3>
+<h2 id="chapter-2---unix-tutorial">Chapter 2 - Unix Tutorial</h2>
+<hr/>
+<h3 id="cal">Cal</h3>
+<p>Displays a calendar on the terminal</p>
+<pre class="hljs"><code><div>$ cal <span class="hljs-comment"># shows the calendar of current month</span>
+$ cal 2015 <span class="hljs-comment"># shows the calendar for all months of 2015</span>
+$ cal 5 2015 <span class="hljs-comment"># shows the calendar for May 2015</span>
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-04-14-00-29-55.png" alt=""></p>
+<hr/>
+<pre class="hljs"><code><div>$ whoami <span class="hljs-comment"># displays user name</span>
+$ who am I <span class="hljs-comment">#shows username, terminal number, login time, ip address</span>
+$ users <span class="hljs-comment"># lists usernames of logged in users</span>
+$ who <span class="hljs-comment">#displays who is logged in</span>
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-04-14-00-32-17.png" alt=""></p>
+<h3 id="ls">ls</h3>
+<p>Lists all files or folders of directories</p>
+<pre class="hljs"><code><div>$ ls
+$ ls -sCF <span class="hljs-comment">#size multi-column indicates if it's file or folder</span>
+$ ls -s -C -F /usr/bin <span class="hljs-comment"># same as above for another directory</span>
+$ ls -a <span class="hljs-comment"># lists all files (hidden files as well)</span>
+$ ls . <span class="hljs-comment"># current directory</span>
+$ ls -al <span class="hljs-comment"># shows a list with permissions and other infos</span>
+$ ls -ld <span class="hljs-comment"># lists directories only</span>
+</div></code></pre>
+<p>Example Output:
+<img src="../../images/2021-04-14-00-38-27.png" alt=""></p>
+<h3 id="io-redirection">I/O Redirection</h3>
+<p>A process is a running program that consists of an input, an output and an error output. With I/O Redirection it is possible to change the input and output of a program.</p>
+<p><img src="../../images/2021-04-14-00-39-42.png" alt=""></p>
+<pre class="hljs"><code><div>$ 1&gt; <span class="hljs-comment">#change output</span>
+$ 2&gt; <span class="hljs-comment">#change error output</span>
+$ &lt; <span class="hljs-comment">#change input</span>
+$ <span class="hljs-built_in">echo</span> hello &gt; hi.txt <span class="hljs-comment"># example</span>
+$ cat filedoesntexist.txt 2&gt; error.txt <span class="hljs-comment"># example2</span>
+</div></code></pre>
+<h3 id="pipe">Pipe</h3>
+<p>With a pipe it is possible to connect the output or the error output to another process:</p>
+<p><img src="../../images/2021-04-14-00-42-34.png" alt=""></p>
+<h3 id="echo">echo</h3>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">echo</span> hi~ <span class="hljs-comment">#prints hi~ on the console</span>
+$ <span class="hljs-built_in">echo</span> hi &gt; hi.txt <span class="hljs-comment">#writes 'hi' into the file hi.txt</span>
+$ <span class="hljs-built_in">echo</span> hello &gt;&gt; hi.txt <span class="hljs-comment">#appends hello to the file hi.txt</span>
+$ <span class="hljs-built_in">echo</span> hello | write unix300 <span class="hljs-comment"># shows hello on the terminal of user unix300</span>
+$ <span class="hljs-built_in">echo</span> hello | write unix300 pts/7 <span class="hljs-comment"># same as above but specifying  the terminal</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span> <span class="hljs-comment">#prints the PATH-Variable</span>
+$ banner Hi~ <span class="hljs-comment"># prints a big Hi~ on the terminal using ASCI-Characters</span>
+</div></code></pre>
+<h3 id="wc">wc</h3>
+<p>Word-Count command.</p>
+<pre class="hljs"><code><div>$ cat hi.txt <span class="hljs-comment"># shows content of hi.txt</span>
+$ cat /etc/passwd | wc <span class="hljs-comment"># shows size, rows and word count of file hi.txt</span>
+$ wc /etc/passwd <span class="hljs-comment"># Same as above without using a pipe</span>
+$ wc -l /etc/passwd <span class="hljs-comment"># displays amount of lines</span>
+</div></code></pre>
+<h3 id="cp-mv-rm">cp, mv, rm</h3>
+<p>Copy, Move, Remove</p>
+<pre class="hljs"><code><div>$ cp hi.txt hi2.txt <span class="hljs-comment"># Copies file hi.txt with its contents to file hi2.txt</span>
+$ rm hi2.txt <span class="hljs-comment"># removes FIle hi2.txt</span>
+$ mv hi.txt hi3.txt <span class="hljs-comment"># Moves contents from file hi.txt to new file hi3.txt and deletes file hi.txt</span>
+</div></code></pre>
+<h3 id="directory">directory</h3>
+<p>Important Directory commands</p>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">pwd</span> <span class="hljs-comment"># prints current working directory</span>
+$ <span class="hljs-built_in">cd</span> .. <span class="hljs-comment"># change working directory to upper folder</span>
+$ <span class="hljs-built_in">cd</span> / <span class="hljs-comment"># change working directory to specified path</span>
+$ mkdir dir1 <span class="hljs-comment"># creates new directory with name dir1</span>
+$ rmdir dir1 <span class="hljs-comment"># removes dir1</span>
+</div></code></pre>
+<h3 id="mail">mail</h3>
+<pre class="hljs"><code><div>$ mailx <span class="hljs-comment"># Prompts mail Program, if no mails just a message, otherwise the user will be asked for a mail</span>
+$ mailx unix300 <span class="hljs-comment">#sends mail to user unix300</span>
+$ mailx unix300 &lt; hi.txt <span class="hljs-comment"># sends mail with content of file hi.txt</span>
+$ ls /var/mail <span class="hljs-comment"># folder containing mails for users</span>
+</div></code></pre>
+<p>Output:</p>
+<p><img src="../../images/2021-04-14-00-55-25.png" alt=""></p>
+<h3 id="grep">grep</h3>
+<p>Grep stand for global regular expression and is used for filtering Files or Text by using regular expressions.</p>
+<pre class="hljs"><code><div>$ cat /etc/passwd | grep unix30 <span class="hljs-comment"># only shows lines of files that include 'unix30'</span>
+$ grep unix30 /etc/passwd <span class="hljs-comment"># same as above in /etc/passwd file without piping</span>
+$ ls -l | grep hi <span class="hljs-comment"># lists all files that contain hi in their name</span>
+
+</div></code></pre>
+<h3 id="viewing-text-files">Viewing Text Files</h3>
+<pre class="hljs"><code><div>$ cat /etc/passwd <span class="hljs-comment"># Shows content of /etc/passwd file</span>
+$ cat /etc/passwd | more <span class="hljs-comment"># Only shows a few lines and the file is scrollable by using the space bar</span>
+$ more /etc/passwd <span class="hljs-comment"># same as above without piping</span>
+$ less /etc/passwd <span class="hljs-comment"># similar to more but allows forward and backward navigation</span>
+$ pg /etc/group <span class="hljs-comment"># Pagination for passwd file (allows the user to enter a page)</span>
+$ head -5 /etc/group <span class="hljs-comment"># shows the first 5 lines of the file</span>
+$ tail /etc/group <span class="hljs-comment">#prints the last lines of the file</span>
+</div></code></pre>
+<h3 id="redirection">Redirection</h3>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">echo</span> hi &gt; hi.txt <span class="hljs-comment"># saves the output 'hi' of echo into hi.txt file</span>
+$ mailx unix300 &lt; hi.txt <span class="hljs-comment"># sends mail to user unix300 with the contents of hi.txt</span>
+$ mkdir1
++ <span class="hljs-variable">$mkdir</span> dir1 2&gt; err.txt <span class="hljs-comment"># Prints error of folder already existing to err.txt</span>
+$ find /<span class="hljs-built_in">export</span>/home -name <span class="hljs-string">'hi.xt'</span> 2&gt; err.txt 1&gt;out.txt <span class="hljs-comment"># prints the error (permission denied e.g.) to err.txt and the finding results for 'hi.txt' into out.txt</span>
+</div></code></pre>
 
 </body>
 </html>
