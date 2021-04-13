@@ -365,8 +365,33 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-1">Chapter 1</h2>
+<h2 id="chapter-1---unix-basic">Chapter 1 - Unix Basic</h2>
 <hr/>
+<h3 id="telnet-setup">Telnet setup</h3>
+<p>Telnet is a protocol that is needed to connect to a Unix Server (or SSH). It provides an iteractive text-oriented communication using a terminal.</p>
+<pre class="hljs"><code><div>$ ipconfig <span class="hljs-comment"># shows IP configuration of current machine</span>
+
+$ ping 10.10.54.75 <span class="hljs-comment"># Sends ICMP Packages to destination and checks if the server is reachable</span>
+
+$ telnet 10.10.54.75 <span class="hljs-comment"># Starts a Telnet Connection</span>
+</div></code></pre>
+<h3 id="login">Login</h3>
+<p>The Server prompts the username and password. If entered successfully the user will be able to use the Unix-Server. Output:</p>
+<p><img src="../../images/2021-04-14-00-10-36.png" alt=""></p>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">exit</span> <span class="hljs-comment"># Exits the (telnet) session</span>
+</div></code></pre>
+<h3 id="unix-command-syntax">Unix Command Syntax</h3>
+<p>Unix Command Syntax works as follows:</p>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">command</span> [option] [arguments]
+$ ls -sCF /usr/bin <span class="hljs-comment"># Example</span>
+</div></code></pre>
+<h3 id="ssh">SSH</h3>
+<p>SSH works similar to connecting to a server with Telnet but the messages are encrypted.</p>
+<pre class="hljs"><code><div>$ ssh 10.10.54.75
+</div></code></pre>
+<p>Putty is a program that allows to connect via SSH or Telnet:</p>
+<p><img src="../../images/2021-04-14-00-15-08.png" alt=""></p>
+<h3 id="basic-commands">Basic Commands</h3>
 <pre class="hljs"><code><div>uname -a
 </div></code></pre>
 <p>Operating System information<br>
@@ -385,21 +410,41 @@ Output:
 Output:
 <code>uid=1563(21170004) gid=500(studs)</code></p>
 <hr/>
+<pre class="hljs"><code><div>groups
+</div></code></pre>
+<p>Output:
+<code>stud</code> //current group</p>
+<hr/>
 <pre class="hljs"><code><div>who
 </div></code></pre>
-<p>Shows who is connected on which terminal
-Output:
+<p>Shows who is connected on which terminal<br>
+Output:<br>
 <img src="../../images/2021-03-24-15-09-31.png" alt=""></p>
-<hr/>
-<pre class="hljs"><code><div>uname -a
+<pre class="hljs"><code><div>who | grep khlee
 </div></code></pre>
-<p>Output:
-<code>SunOS communix 5.11 11.3 i386 i86pc</code></p>
+<p>Output:<br>
+<img src="../../images/2021-04-14-00-20-18.png" alt=""></p>
 <hr/>
-<pre class="hljs"><code><div>uname -a
+<pre class="hljs"><code><div>finger [id]
 </div></code></pre>
-<p>Output:
-<code>SunOS communix 5.11 11.3 i386 i86pc</code></p>
+<p>Output:<br>
+<img src="../../images/2021-04-14-00-21-03.png" alt=""></p>
+<hr/>
+<hr/>
+<pre class="hljs"><code><div>w
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-04-14-00-21-49.png" alt=""></p>
+<hr/>
+<h3 id="terminal-setting">Terminal Setting</h3>
+<pre class="hljs"><code><div>$ tty <span class="hljs-comment">#shows current terminal</span>
+$ stty -a <span class="hljs-comment">#shows more terminal settings</span>
+$ stty erase <span class="hljs-comment">#Rebinds/Deletes terminal setting</span>
+$ <span class="hljs-built_in">echo</span> hello | write unix300 pts/7 <span class="hljs-comment"># Writes a message to user unix300 on terminal pts/7</span>
+</div></code></pre>
+<h3 id="password-change">Password Change</h3>
+<pre class="hljs"><code><div>$ passwd <span class="hljs-comment"># prompts to enter old and new password</span>
+</div></code></pre>
 
 </body>
 </html>
