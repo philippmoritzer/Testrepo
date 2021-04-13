@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chapter7.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="vi-editor">Vi Editor</h2>
+<h3 id="vi-modes">Vi Modes</h3>
+<pre class="hljs"><code><div>$ vi
+$ vi filename
+</div></code></pre>
+<p><img src="images/2021-04-08-14-18-37.png" alt=""></p>
+<h3 id="moving-within-a-file">Moving within a file</h3>
+<ul>
+<li>
+<p>h,j,k,l (left, down, up, right)
+<img src="images/2021-04-08-14-19-43.png" alt=""></p>
+</li>
+<li>
+<p>0,^(left most), $(right most)</p>
+</li>
+<li>
+<p>[Enter] Next line</p>
+</li>
+<li>
+<p>Ctrl + F : One Page Forward</p>
+</li>
+<li>
+<p>Ctrl + B : One Page Backwards</p>
+</li>
+<li>
+<p>Ctrl + U : Half Page Up</p>
+</li>
+<li>
+<p>Ctrl + D : Half Page Down</p>
+</li>
+<li>
+<p>:0, :1 - First Line</p>
+</li>
+<li>
+<p><img class="emoji" alt="unamused" src="data:image/png;base64,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" /> - Last Line</p>
+</li>
+<li>
+<p>:100 - 100th Line</p>
+</li>
+<li>
+<p>Ctrl + % ( {&lt;---&gt;}) Move in between brackets</p>
+</li>
+<li>
+<p>:set nu - displays line numbers</p>
+</li>
+</ul>
+<h3 id="searching">Searching</h3>
+<ul>
+<li>/string<br>
+search string(forwards)</li>
+<li>n<br>
+Go to next string</li>
+<li>N<br>
+Go to previous string</li>
+<li>?string<br>
+Search backwards</li>
+</ul>
+<h3 id="exit--save">Exit / save</h3>
+<ul>
+<li>:q - quit</li>
+<li>:w - write to the file</li>
+<li>:wq - write and quit</li>
+<li>q! - exit without saving</li>
+<li>:wq! - overwrite and exit</li>
+<li>ZZ - save and exit</li>
+<li>:x - exit</li>
+<li>:w filename - write to file filename</li>
+<li>:r filename - read and insert file filename</li>
+</ul>
+<h3 id="insert-mode">Insert Mode</h3>
+<ul>
+<li>i - insert</li>
+<li>a - append</li>
+<li>o - insert from next line</li>
+<li>[esc] - go to command mode</li>
+</ul>
+<h3 id="delete">Delete</h3>
+<ul>
+<li>x - Delete 1 Character</li>
+<li>5x - Delete 5 Characters</li>
+<li>dd - Delete 1 line</li>
+<li>3dd - Delete 3 lines</li>
+<li>D - delete remaining line of this line from the cursor</li>
+<li>J - join current line and next line</li>
+<li>i[enter][esc] - separate line</li>
+</ul>
+<h3 id="change">Change</h3>
+<ul>
+<li>r - replace 1 character
+<ul>
+<li>ra - 1 character is changed to 'a'</li>
+</ul>
+</li>
+<li>3r - replace 3 characters
+<ul>
+<li>3ra[esc] - 3 Characters are changed to 'aaa'</li>
+</ul>
+</li>
+<li>cw - change 1 word
+<ul>
+<li>cwabc[esc] - word is changed to 'abc'</li>
+<li>cwab cd 12[esc] - word is changed to 'ab cd 12'</li>
+</ul>
+</li>
+<li>3cw: change 3 words
+<ul>
+<li>3cwabc[esc] - 3 words are changed to 'abc'</li>
+<li>3cwab cd 12[esc] - 3 words are changed to 'ab cd 12'</li>
+</ul>
+</li>
+</ul>
+<h3 id="undo--redo">Undo / Redo</h3>
+<ul>
+<li>
+<p>u - Undo (Cancel Change)</p>
+<ul>
+<li>uu - Cancel undo</li>
+</ul>
+</li>
+<li>
+<p>. - redo</p>
+<ul>
+<li>/abc //search 'abc'</li>
+<li>cwABCD[esc] //change to 'ABCD'</li>
+<li>n. //search next and change to 'ABCD'</li>
+</ul>
+</li>
+</ul>
+<h3 id="copy-and-move">Copy and move</h3>
+<pre class="hljs"><code><div>$ Copy a line
+- yy -&gt; [move] -&gt; p
+
+$ Copy several lines
+- 3yy -&gt; [move] -&gt;p
+
+$ Move a line
+- dd -&gt; [move] -&gt; p
+
+$ Move several lines
+- 3dd -&gt; [move] -&gt; p
+</div></code></pre>
+<h3 id="running-commands">Running commands</h3>
+<ul>
+<li>:%s/abc/ABCD/g
+<ul>
+<li>change all 'abc' to 'ABCD' in file</li>
+</ul>
+</li>
+<li>:10,$ s/abc/ABCD/g
+<ul>
+<li>change all 'abc' to 'ABCD' from line 10 to end of file</li>
+</ul>
+</li>
+<li>:0,$ s/[Ctrl + V][CTRL+M]//g
+<ul>
+<li>delete all ^M character in file</li>
+</ul>
+</li>
+<li>:100,200 w! filename
+<ul>
+<li>save line 100 to 200 to file filename</li>
+</ul>
+</li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li>:set nu - show line number</li>
+<li>:set nonu - hide line number</li>
+<li>:sh - go to sh temporary
+<ul>
+<li>return to vi by $exit</li>
+</ul>
+</li>
+<li>:!pwd run a command in vi
+<ul>
+<li>press enter to edit continously</li>
+</ul>
+</li>
+<li>Ctrl + l - reset screen</li>
+</ul>
+
+</body>
+</html>
