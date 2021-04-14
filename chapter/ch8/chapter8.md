@@ -1,4 +1,4 @@
-## Chapter 8
+## Chapter 8 - Advanced Tools
 <small>Philipp Moritzer - 21170004</small>
 <hr/>
 

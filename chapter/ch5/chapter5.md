@@ -1,4 +1,4 @@
-## Chapter 5 Customizing Working Environment
+## Chapter 5 - Customizing Working Environment
 <small>Philipp Moritzer - 21170004</small>
 <hr/>
 

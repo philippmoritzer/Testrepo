@@ -1,4 +1,4 @@
-## Chapter 6
+## Chapter 6 - Unix Commands In-Depth
 <small>Philipp Moritzer - 21170004</small>
 <hr/>
 
