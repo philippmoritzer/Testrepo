@@ -1,4 +1,5 @@
 ## Chapter 1 - Unix Basic
+<small>Philipp Moritzer - 21170004</small>
 <hr/>
 
 ### Telnet setup

@@ -1,4 +1,6 @@
 ## Chapter 6
+<small>Philipp Moritzer - 21170004</small>
+<hr/>
 
 ### Anatomy of a Command
 ```bash

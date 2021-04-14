@@ -1,4 +1,6 @@
-## Vi Editor
+## Chapter 7 - Vi Editor
+<small>Philipp Moritzer - 21170004</small>
+<hr/>
 
 ### Vi Modes
 

@@ -347,7 +347,7 @@ code {
 }
 
 /* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- -*/
+-------------------------------------------------------- */
 .page {
 	page-break-after: always;
 }
@@ -365,6 +365,78 @@ code {
           : 'default'
     });
   </script>
+<h2 id="chapter-3---users-and-groups">Chapter 3 - Users and Groups</h2>
+<p><small>Philipp Moritzer - 21170004</small></p>
+<hr/>
+<h3 id="accounts">Accounts</h3>
+<p>There are three primary types of Accounts:</p>
+<ul>
+<li>Root Accounts
+<ul>
+<li>Super User</li>
+<li>Complete and unrestricted control of the system</li>
+<li>No restrictions</li>
+</ul>
+</li>
+<li>System Accounts
+<ul>
+<li>Needed for the operation of system-specific components</li>
+<li>Mail, bin, adm, daemon, ...</li>
+</ul>
+</li>
+<li>User Accounts
+<ul>
+<li>Limited Access</li>
+</ul>
+</li>
+</ul>
+<h3 id="etcpasswd">/etc/passwd</h3>
+<p>The /etc/passwd-File identifies the authorized accounts for the system.</p>
+<p><img src="../../images/2021-04-14-16-52-59.png" alt=""></p>
+<ul>
+<li>21170004 username</li>
+<li>x - not used</li>
+<li>1563 - User ID</li>
+<li>500 - Group ID</li>
+<li>pmoritzer - comments</li>
+<li>/export/home/stud21/21170004 - Home Directory</li>
+<li>/usr/bin/bash - Login shell</li>
+</ul>
+<h3 id="etcgroup">/etc/group</h3>
+<p><img src="../../images/2021-04-14-16-55-33.png" alt=""></p>
+<p>Last Field: members
+Primary group information is stored in /etc/passwd file</p>
+<h3 id="etcshadow">/etc/shadow</h3>
+<p>The /etc/shadow file stores actual password in encrypted format and other passwords related information such as user name, last password change date, password expiration values, etc,.</p>
+<pre class="hljs"><code><div>$ cat /etc/shadow <span class="hljs-comment"># only available as super user</span>
+</div></code></pre>
+<p>Output:  <code>root:62rmkjdR3h5Pk:11944::::::</code>
+<code>unix306:uAJSB7ZC0suPM:16503::::::</code>
+<code>nobody:NP:6445::::::</code>
+<code>listen:*LK*:::::::</code>
+etc.</p>
+<p>NP - no password is valid
+LK - Account is locked until the Super-User sets a password</p>
+<pre class="hljs"><code><div>$ login-id:password:lastchg:min:max:warn:inactive:expire:flag
+</div></code></pre>
+<ul>
+<li>login-id: Login name</li>
+<li>Password: 13 character encrypted password</li>
+<li>Lastchg: Number of days from Jan 1, 1970 to last password change</li>
+<li>Min: Minium number of days between password changes</li>
+<li>Max: Max Number of Days where the password is valid</li>
+<li>warn: Number of days until the user gets a warning that his password needs to be changed</li>
+<li>Inactive: Number of days the user is allowed to be inactive</li>
+<li>expire: After that date the login cannot longer be used</li>
+<li>flag: not used</li>
+</ul>
+<h3 id="su">su</h3>
+<p>Substitute User (or Switch User)</p>
+<pre class="hljs"><code><div>$ su [-] id <span class="hljs-comment"># switches the current user to given id</span>
+$ su unix345 <span class="hljs-comment"># example</span>
+$ su - unix345 <span class="hljs-comment"># changed to unix345 environment, can be checked with pwd command</span>
+$ su <span class="hljs-comment"># switching to root user</span>
+</div></code></pre>
 
 </body>
 </html>

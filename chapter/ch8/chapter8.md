@@ -1,4 +1,6 @@
 ## Chapter 8
+<small>Philipp Moritzer - 21170004</small>
+<hr/>
 
 ### Regular Expression
 
