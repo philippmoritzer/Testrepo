@@ -115,7 +115,7 @@ $ Move several lines
 - :100,200 w! filename
   - save line 100 to 200 to file filename 
 
-## Miscellaneous
+### Miscellaneous
 - :set nu - show line number
 - :set nonu - hide line number
 - :sh - go to sh temporary
