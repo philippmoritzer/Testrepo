@@ -5,8 +5,8 @@
 ### Vi Modes
 
 ```bash
-$ vi
-$ vi filename
+$ vi # Opens Vi Editor
+$ vi filename # Opens Vi Editor with file 'filename'
 ```
 
 ![](../../images/2021-04-08-14-18-37.png)

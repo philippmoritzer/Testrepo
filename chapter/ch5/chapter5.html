@@ -379,29 +379,76 @@ code {
 <h3 id="localenvironment-variable">Local/environment Variable</h3>
 <p>Local variable: affects current shell only</p>
 <p>Environment variable: affects sub-shell as well</p>
-<pre class="hljs"><code><div>$ a = 3 //<span class="hljs-built_in">local</span> variable
-$ <span class="hljs-built_in">export</span> a // exposes variable
+<pre class="hljs"><code><div>$ a = 3 <span class="hljs-comment">#local variable</span>
+$ <span class="hljs-built_in">export</span> a <span class="hljs-comment"># exposes variable</span>
 </div></code></pre>
 <p>Example:</p>
 <pre class="hljs"><code><div>$ a=3; b=5
-$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span> <span class="hljs-variable">$b</span> // 3, 5
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span> <span class="hljs-variable">$b</span> <span class="hljs-comment"># 3, 5</span>
 $ <span class="hljs-built_in">export</span> b
 $ sh // start sub-shell
-$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span> //no result
-$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$b</span> //5
-$ <span class="hljs-built_in">exit</span> //<span class="hljs-built_in">return</span> to parent shell
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span> <span class="hljs-comment">#no result</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$b</span> <span class="hljs-comment">#5</span>
+$ <span class="hljs-built_in">exit</span> <span class="hljs-comment">#return to parent shell</span>
 </div></code></pre>
 <h3 id="variable-commands">Variable Commands</h3>
-<pre class="hljs"><code><div>$ set //see all variables and its values
-$ set | grep PATH
-$ env //lists exported variables
-$ echo $variable
-$ export //makes variable an env variable
-$ unset // delete variable
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">set</span> <span class="hljs-comment"># see all variables and its values</span>
+$ <span class="hljs-built_in">set</span> | grep PATH <span class="hljs-comment"># shows the value of the PATH variable</span>
+$ env <span class="hljs-comment"># lists exported variables</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$variable</span> <span class="hljs-comment"># shows variable value</span>
+$ <span class="hljs-built_in">export</span> <span class="hljs-comment"># makes a variable an env variable</span>
+$ <span class="hljs-built_in">unset</span> <span class="hljs-comment"># delete variable</span>
 </div></code></pre>
+<h3 id="absoluterelative-path">Absolute/Relative Path</h3>
+<ul>
+<li>Absolute Path
+<ul>
+<li>Starts with the root path (/)</li>
+<li>Example: /usr/bin/ls</li>
+</ul>
+</li>
+<li>Relative Path:
+<ul>
+<li>does not start with /</li>
+<li>references to the current directory</li>
+<li>Example ../dir/hi.txt</li>
+</ul>
+</li>
+</ul>
+<p>. : Current directory
+.. : Parent directory
+~ : User's home directory</p>
+<h3 id="shell-types">Shell Types</h3>
+<ul>
+<li>Bourne Shell (sh)
+<ul>
+<li>Original Unix shell</li>
+</ul>
+</li>
+<li>C Shell (csh)
+<ul>
+<li>Syntax as the C programing language</li>
+</ul>
+</li>
+<li>Korn Shell (ksh)
+<ul>
+<li>Combines sh and csh and has some additional functions</li>
+</ul>
+</li>
+<li>Bourne Again Shell (bash)
+<ul>
+<li>same as sh but has additional functions</li>
+</ul>
+</li>
+</ul>
+<h3 id="shell-initialization-files">Shell initialization files</h3>
+<p>/etc/profile: global configratuion file</p>
+<p>Sh: ~/.profile</p>
+<p>Ksh: ~./profile, ~/.kshrc</p>
+<p>Bash: ~/.bashrc_profile</p>
 <h3 id="alias">Alias</h3>
-<pre class="hljs"><code><div>$ Substituting one term to another
-$ <span class="hljs-built_in">alias</span> ls=<span class="hljs-string">'ls -l'</span>
+<pre class="hljs"><code><div>
+$ <span class="hljs-built_in">alias</span> ls=<span class="hljs-string">'ls -l'</span> <span class="hljs-comment"># Substituting one term to another</span>
 $ <span class="hljs-built_in">unalias</span> ls
 </div></code></pre>
 

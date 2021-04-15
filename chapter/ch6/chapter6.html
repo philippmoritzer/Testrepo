@@ -369,47 +369,55 @@ code {
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
 <h3 id="anatomy-of-a-command">Anatomy of a Command</h3>
-<pre class="hljs"><code><div>$ Command [options] [arguments] //Unix <span class="hljs-built_in">command</span> structure
+<pre class="hljs"><code><div>$ Command [options] [arguments] <span class="hljs-comment"># Unix command structure</span>
+
+Examples: 
 - $ ls -sCF /usr/bin
 - $ ls -s -C -F /etc
 
-$ man ls //manual
+$ man ls <span class="hljs-comment"># command manual</span>
 
-$ apropos ls //finds all related files
+$ apropos ls <span class="hljs-comment"># shows all related file to this command (ls)</span>
 
-$ whereis <span class="hljs-built_in">echo</span> //shows <span class="hljs-built_in">where</span> all <span class="hljs-built_in">echo</span> related files are
+$ whereis <span class="hljs-built_in">echo</span> <span class="hljs-comment"># shows where all echo related files are located</span>
 
-$ <span class="hljs-built_in">which</span> <span class="hljs-built_in">echo</span> //only shows executable
+$ <span class="hljs-built_in">which</span> <span class="hljs-built_in">echo</span> <span class="hljs-comment"># only shows executable</span>
 
 </div></code></pre>
 <h3 id="meta-characters">Meta Characters</h3>
 <pre class="hljs"><code><div>$ Wildcard
- - ? : matches one character
- - * : matches one or more characters
- - [] : matches one of the characters <span class="hljs-keyword">in</span> [...]
+ - ? <span class="hljs-comment"># matches one character</span>
+ - * <span class="hljs-comment"># matches one or more characters</span>
+ - [] <span class="hljs-comment"># matches one of the characters in [...]</span>
 $ ls *.txt
 $ ls hi?.txt
 $ ls hi[12357].txt
 </div></code></pre>
 <h3 id="redirection">Redirection</h3>
-<pre class="hljs"><code><div>$ ls &gt; ls.txt
+<pre class="hljs"><code><div>$ ls &gt; ls.txt <span class="hljs-comment"># writes the output of ls command to ls.txt file</span>
 
-$ sort &lt; /etc/group //sorts a textfile alphabetically
-$ sort &lt; /etc/group &gt; sort.txt
+$ sort &lt; /etc/group <span class="hljs-comment"># sorts a textfile alphabetically</span>
+$ sort &lt; /etc/group &gt; sort.txt <span class="hljs-comment"># same as above but puts output into sort.txt</span>
 
-$ find / -name <span class="hljs-string">'hi.txt'</span> 2&gt; /dev/null // find a file by name. Permssion denied messages will be omitted.
+$ find / -name <span class="hljs-string">'hi.txt'</span> 2&gt; /dev/null <span class="hljs-comment"># find a file by name. Permssion denied messages will be omitted.</span>
 
-$ find /<span class="hljs-built_in">export</span>/home -name <span class="hljs-string">'hi.txt'</span> &gt; out.txt 2&gt;&amp;1
-$ find /<span class="hljs-built_in">export</span>/home -name <span class="hljs-string">'hi.txt'</span> 2&gt; out.txt 1&gt;&amp;2
+$ find /<span class="hljs-built_in">export</span>/home -name <span class="hljs-string">'hi.txt'</span> &gt; out.txt 2&gt;&amp;1 <span class="hljs-comment">#Puts error and output into out.txt file, errors first</span>
+$ find /<span class="hljs-built_in">export</span>/home -name <span class="hljs-string">'hi.txt'</span> 2&gt; out.txt 1&gt;&amp;2 <span class="hljs-comment"># same as above but content first, then errors</span>
 </div></code></pre>
 <h3 id="pipes">Pipes</h3>
 <p>The Output of the first process is the input of the second process.</p>
-<pre class="hljs"><code><div>$ cho | wc // word count who <span class="hljs-built_in">command</span>
-$ cat /etc/passwd | grep unix30 // shows only lines that contain unix30
-$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span> // shell variable path
-$ <span class="hljs-variable">${PATH}</span><span class="hljs-variable">${TERM}</span> //shell variable value
-$ <span class="hljs-built_in">echo</span> today is `date`
-$ \<span class="hljs-variable">$PATH</span> Escape the dollar sign
+<pre class="hljs"><code><div>$ who | wc <span class="hljs-comment"># word count who command</span>
+$ cat /etc/passwd | grep unix30 <span class="hljs-comment"># shows only lines that contain unix30</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span> <span class="hljs-comment"># shell variable path</span>
+$ <span class="hljs-variable">${PATH}</span><span class="hljs-variable">${TERM}</span> <span class="hljs-comment"># shell variable value</span>
+$ <span class="hljs-built_in">echo</span> today is `date` <span class="hljs-comment"># prints current date</span>
+$ \<span class="hljs-variable">$PATH</span> <span class="hljs-comment"># Escape the dollar sign</span>
+</div></code></pre>
+<h3 id="quotas">Quotas</h3>
+<p>The amount of disk space for each user is allocated</p>
+<pre class="hljs"><code><div>$ /etc/vfstab <span class="hljs-comment">#enable quotas option</span>
+
+$ quotacheck -acug /<span class="hljs-built_in">export</span>/home <span class="hljs-comment"># scan filesystem for disk usage, create, check and repair quota files</span>
 </div></code></pre>
 
 </body>
