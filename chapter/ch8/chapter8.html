@@ -393,6 +393,62 @@ Metacharacters: Characters that represent another set or group of characters or 
 </ul>
 </li>
 </ul>
+<h3 id="ftp-file-transfer-protocol">FTP (file transfer protocol)</h3>
+<pre class="hljs"><code><div>$ ftp 21170004@comunix.seoultech.ac.kr <span class="hljs-comment"># connect to Comunix server using FTP</span>
+$ sftp -p 21170004@comunix.seoultech.ac.kr <span class="hljs-comment">#connect to Comunix server using FTP while specifying the port with -P</span>
+$ !dir <span class="hljs-comment"># shows content of your current local directory</span>
+$ <span class="hljs-built_in">pwd</span> <span class="hljs-comment"># displays current working directory remotely</span>
+$ lcd .. <span class="hljs-comment"># change local directory</span>
+$ put &lt;filename&gt; <span class="hljs-comment"># upload file to server using current local directory as source and current remote directory as destination</span>
+$ get &lt;filename&gt; <span class="hljs-comment"># download file using the directories</span>
+$ quit <span class="hljs-comment"># exit (s)ftp session</span>
+</div></code></pre>
+<h3 id="grep">grep</h3>
+<p>Prints lines that has the string:</p>
+<pre class="hljs"><code><div>$ grep unix30 /etc/passwd <span class="hljs-comment"># prints lines that contain unix30 in /etc/passwd file</span>
+$ cat /etc/passwd | grep unix30 <span class="hljs-comment"># same as above but with using the pipe operator</span>
+$ grep -v <span class="hljs-comment"># opposite (not matching the expression)</span>
+$ grep -i <span class="hljs-comment"># ignores the case</span>
+</div></code></pre>
+<h3 id="find">find</h3>
+<p>Finds files in the directory structure</p>
+<pre class="hljs"><code><div>$ find / -name core <span class="hljs-comment"># finds files with the name core</span>
+$ find /<span class="hljs-built_in">export</span> -user unix300 <span class="hljs-comment"># finds files specifiyng the user name</span>
+$ find /<span class="hljs-built_in">export</span> -size +2000k <span class="hljs-comment"># finds files specifiyng the file size</span>
+$ find / -perm -4000 <span class="hljs-comment"># finds files specifiyng the persmission</span>
+$ find / -name core 2&gt; /dev/null <span class="hljs-comment"># omits the error messages</span>
+</div></code></pre>
+<h3 id="sort">sort</h3>
+<pre class="hljs"><code><div>$ sort -t: +1 /etc/group <span class="hljs-comment">#sorts the /etc/group file using the second column divided by the ':'</span>
+$ head /etc/passwd | sort -r &gt; pass.txt <span class="hljs-comment"># sorts the /etc/passwd file and sorts it in reverse order and puts the output in the pass.txt file</span>
+$ -f <span class="hljs-comment"># ignore case</span>
+$ -r <span class="hljs-comment"># reversed order</span>
+$ -t <span class="hljs-comment"># set delimiter</span>
+$ -o <span class="hljs-comment"># set output file</span>
+</div></code></pre>
+<h3 id="teescript">Tee/script</h3>
+<p>Tee: Split output (Screen and file)</p>
+<pre class="hljs"><code><div>$ ps -ef | tee ps.txt <span class="hljs-comment">#prints current process status to the console and saves it to ps.txt</span>
+$ telnet 10.10.54.75 | tee telnet.txt <span class="hljs-comment"># saves the whole telnet session to file telnet.txt</span>
+</div></code></pre>
+<p>Script: Record interactive login session</p>
+<pre class="hljs"><code><div>$ script -a filename <span class="hljs-comment"># saves session to filename</span>
+$ <span class="hljs-built_in">exit</span> <span class="hljs-comment"># end script</span>
+</div></code></pre>
+<h3 id="unix-utilites">Unix utilites</h3>
+<pre class="hljs"><code><div>$ wc <span class="hljs-comment"># word count (lines/words/characters)</span>
+$ cut <span class="hljs-comment"># extract character or words</span>
+$ cut -c1-5 /etc/passwd <span class="hljs-comment"># extract characters 1-5 from /etc/passwd file</span>
+$ cut -d: -f 1,3 /etc/passwd <span class="hljs-comment"># cuts by delimiter</span>
+$ paste file1 file2 <span class="hljs-comment"># merges file1 and file2</span>
+$ tr abcd ABCD &lt; filename <span class="hljs-comment"># translate characters abcd to ABCD by using input filename</span>
+$ split -5 /etc/passwd <span class="hljs-comment"># splites /etc/passwd into separate files of 5 lines</span>
+$ uniq filename <span class="hljs-comment"># file comparison - reports or filters out repeated lines in a file</span>
+$ cmp filename <span class="hljs-comment"># file comparison - no output if the files are the same, if they differ the comparison will be displayed by byte and line numbers where the first difference occured</span>
+$ comm file1 file2 <span class="hljs-comment"># file comparison - output in 3 columns: lines only in file 1, lines only in file 2, lines in both files</span>
+$ diff file1 file2 <span class="hljs-comment"># file comparison - No output if the files are same. The output will be a minimal list of diffrences between the files</span>
+
+</div></code></pre>
 
 </body>
 </html>
