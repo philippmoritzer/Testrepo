@@ -365,8 +365,111 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-10">Chapter 10 -</h2>
+<h2 id="chapter-10---job-control--process-management">Chapter 10 - Job Control &amp; Process Management</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="process">Process</h3>
+<ul>
+<li>Instance of a running program</li>
+<li>PID: Each process has a process identifier (1- 32768)</li>
+<li>PPID: Parent PID</li>
+<li>pid 0: schedule daemon</li>
+<li>pid 1: init process</li>
+</ul>
+<pre class="hljs"><code><div>$ ps [-l] <span class="hljs-comment"># see own processes</span>
+$ ps -ef <span class="hljs-comment"># see all processes</span>
+$ <span class="hljs-built_in">echo</span> $$ <span class="hljs-comment"># see current shell pid</span>
+</div></code></pre>
+<h3 id="shell-scripts">Shell Scripts</h3>
+<ul>
+<li># : comments</li>
+<li>#! : sh-bang
+<ul>
+<li>Tell the kernel to run the program listed after the #!</li>
+</ul>
+</li>
+<li>my.sh
+<ul>
+<li>#!/bin/cat</li>
+<li>Hello World</li>
+<li>^d</li>
+</ul>
+</li>
+<li>chmod u+x my.sh</li>
+<li>./my.sh</li>
+</ul>
+<h3 id="stopping-process">Stopping Process</h3>
+<ul>
+<li>Ctrl + C (^C)
+<ul>
+<li>Stops current process</li>
+</ul>
+</li>
+<li>kill commands (send SIGNAL to process)</li>
+</ul>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">kill</span> -l <span class="hljs-comment"># list signal names</span>
+$ <span class="hljs-built_in">kill</span> -9 pid <span class="hljs-comment"># terminates process pid</span>
+$ pkill program_name <span class="hljs-comment"># terminates process by name</span>
+$ pkill sleep <span class="hljs-comment">#</span>
+</div></code></pre>
+<h3 id="proc-file-system">/proc file system</h3>
+<ul>
+<li>Contains a directory for active process named after PID</li>
+</ul>
+<pre class="hljs"><code><div>$ ls -l /proc/$$ <span class="hljs-comment"># current process</span>
+$ ls -l /proc/1 <span class="hljs-comment"># process pid 1</span>
+</div></code></pre>
+<h3 id="setuid">SETUID</h3>
+<ul>
+<li>When a regular user runs a prorgram that has a SETUID bit, the effective UID is change to the UID of the program owner</li>
+<li>/usr/bin/passwd
+<ul>
+<li>If the file is part of the process started by a user, the process is able to progress with the permission of the file's owner</li>
+</ul>
+</li>
+<li>/usr/bin/crontab</li>
+</ul>
+<pre class="hljs"><code><div>$ find / -perm -4000 <span class="hljs-comment"># Find Special permission file using SETUID</span>
+$ chmod u+s myprog <span class="hljs-comment"># Set special permission for myprog file for the user</span>
+</div></code></pre>
+<h3 id="setgid">SETGID</h3>
+<ul>
+<li>When a regular user runs a program that has a SETUID bit, the effective GID is changed to the GID of the program owner</li>
+</ul>
+<pre class="hljs"><code><div>$ find / -perm -2000 <span class="hljs-comment"># finds file with SETGID bit set</span>
+$ chmod g+s myprog <span class="hljs-comment"># adds setgid for file myprg</span>
+</div></code></pre>
+<p>Example:</p>
+<p>/bin/passwd</p>
+<p><img src="../../images/2021-05-11-16-45-05.png" alt=""></p>
+<p>The file has SETUID set and with the permission of root the user is able to change its password. The root permission allows to write the password into the /etc/shadow file, which the user does not have access to.</p>
+<h3 id="job-control">Job Control</h3>
+<ul>
+<li>Two types of process:
+<ul>
+<li>Foreground: Terminal occupied</li>
+<li>Background: Release the terminal</li>
+</ul>
+</li>
+<li>&amp; ampersand
+<ul>
+<li>Start as background</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>$ sleep 60 &amp; <span class="hljs-comment"># starts sleep 60 seconds in background and does not occupy the terminal</span>
+$ <span class="hljs-built_in">jobs</span> <span class="hljs-comment"># shows background process</span>
+$ ps <span class="hljs-comment"># shows foreground and background process</span>
+</div></code></pre>
+<h3 id="job-commands">Job commands</h3>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">jobs</span> <span class="hljs-comment"># list jobs</span>
+$ <span class="hljs-built_in">fg</span> [%n] <span class="hljs-comment"># change process to foreground</span>
+$ <span class="hljs-built_in">bg</span> [%n] <span class="hljs-comment"># change process to background</span>
+$ <span class="hljs-built_in">kill</span> %n <span class="hljs-comment"># kill process</span>
+$ <span class="hljs-built_in">kill</span> -18 %n <span class="hljs-comment"># stop process</span>
+$ <span class="hljs-built_in">kill</span> -19 %n <span class="hljs-comment"># resume process</span>
+$ <span class="hljs-built_in">kill</span> -9 pid <span class="hljs-comment"># kill process</span>
+</div></code></pre>
+
 </body>
 </html>

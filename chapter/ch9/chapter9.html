@@ -365,8 +365,119 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-9">Chapter 9 -</h2>
+<h2 id="chapter-9---awk">Chapter 9 - AWK</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="awk">awk</h3>
+<ul>
+<li>An output formatting language</li>
+<li>Performs operations primarly on exisitng text</li>
+<li>Pattern-Matching program</li>
+<li>Takes 2 inputs
+<ul>
+<li>Command</li>
+<li>Data</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>$ awk <span class="hljs-string">'{print $0}'</span> /etc/passwd
+</div></code></pre>
+<ul>
+<li>Output is sent to standard output</li>
+</ul>
+<h3 id="extracting-data">Extracting data</h3>
+<pre class="hljs"><code><div>$ awk -F<span class="hljs-string">":"</span> <span class="hljs-string">'{print "username: " $1 "\t\t\t user id: " $3}'</span> /etc/passwd
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-05-11-12-05-43.png" alt=""></p>
+<pre class="hljs"><code><div>-F <span class="hljs-comment"># switch : field seprator, default is blank space</span>
+- <span class="hljs-variable">$1</span> <span class="hljs-comment"># first field</span>
+- <span class="hljs-variable">$3</span> <span class="hljs-comment"># third field</span>
+- <span class="hljs-variable">$0</span> <span class="hljs-comment"># whole line</span>
+</div></code></pre>
+<h3 id="command-2-parts">Command 2 parts</h3>
+<ul>
+<li>Patterns
+<ul>
+<li>Patterns are matched with the line of the data file</li>
+<li>No pattern provided: Any line is always executed</li>
+</ul>
+</li>
+<li>Actions
+<ul>
+<li>Have several constructions</li>
+<li>Each instructions include =, if, while, for, print, printf</li>
+</ul>
+</li>
+</ul>
+<h3 id="patterns">Patterns</h3>
+<ul>
+<li>
+<p>Consists of</p>
+<ul>
+<li>String of text
+<ul>
+<li>Example: /unix/</li>
+</ul>
+</li>
+<li>Regular Expression
+<ul>
+<li>Example: [a-z]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Escape sequence at Printf</p>
+<ul>
+<li>\n (new line), ' (single quotation mark), \\ backslash, \0 null, \b backspace</li>
+</ul>
+</li>
+</ul>
+<h3 id="standard-variables">Standard Variables</h3>
+<ul>
+<li>FS: field separator</li>
+<li>NR: current line</li>
+<li>NF: number of words on a specific line</li>
+<li>FILENAME: name of input file</li>
+<li>RS: separator for each line in a file</li>
+</ul>
+<h3 id="programming-with-awk">Programming with awk</h3>
+<pre class="hljs"><code><div>$ awk -f print.awk /etc/passwd
+</div></code></pre>
+<ul>
+<li>Awk file:</li>
+</ul>
+<pre class="hljs"><code><div>- BEGIN {FS=<span class="hljs-string">":"</span>; total=0}
+- {total+=1; <span class="hljs-built_in">print</span> <span class="hljs-variable">$1</span> <span class="hljs-variable">$3</span>}
+- END {<span class="hljs-built_in">print</span> total NR}
+</div></code></pre>
+<ul>
+<li>Awk needs three sections:
+<ul>
+<li>BEGIN: executed only at the beginning</li>
+<li>Main: executres once for each and every line</li>
+<li>BEGIN and END can be omitted</li>
+</ul>
+</li>
+</ul>
+<h3 id="exampleawk">Example.awk</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">BEGIN</span> { num = <span class="hljs-number">0</span>; a[<span class="hljs-number">2</span>] =<span class="hljs-number">0</span> ; a[<span class="hljs-number">3</span>] = <span class="hljs-number">0</span> }
+{ sum=<span class="hljs-number">0</span>
+ <span class="hljs-keyword">for</span> ( i=<span class="hljs-number">2</span> ; i&lt;=NF ; i++ ) {
+ sum += <span class="hljs-variable">$i</span>; a[i] += <span class="hljs-variable">$i</span>
+}
+ printf(<span class="hljs-string">"%s : sum %d avg is %.2f \n"</span>, <span class="hljs-variable">$1</span>, sum, sum<span class="hljs-regexp">/(NF-1))
+num++
+}
+END {
+for ( i=2 ; i&lt;=4 ; i++ ) {
+ printf "%d th sum %d average %.2f \n", i, a[i], a[i]/</span>NR
+ }
+}
+</div></code></pre>
+<p>Output:</p>
+<p><img src="../../images/2021-05-11-12-36-37.png" alt=""></p>
+
 </body>
 </html>
