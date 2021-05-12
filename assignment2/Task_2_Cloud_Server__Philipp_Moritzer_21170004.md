@@ -1,3 +1,5 @@
+<title>asdfasdgasdg</title>
+
 # Task 2
 
 ## Cloud Server
@@ -168,3 +170,13 @@ $ ./askname.sh
 ```  
 ![](../../images/2021-05-12-23-47-17.png)  
 ### AWK
+Using the AWK language to print out the average grades from students:  
+
+```bash
+vi students.txt
+```  
+![](../../images/2021-05-13-00-01-09.png)  
+
+```bash
+vi average.awk
+```
