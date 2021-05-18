@@ -1,4 +1,3 @@
-## Chapter 9 -
 ## Chapter 11 - Running program at specified times
 
 <small>Philipp Moritzer - 21170004</small>
