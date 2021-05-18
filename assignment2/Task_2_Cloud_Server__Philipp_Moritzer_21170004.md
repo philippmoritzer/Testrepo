@@ -43,7 +43,7 @@ The section Project Details defines the cost and resource management of the Virt
 *Figure 3: Setting up Project Details*  
 
 - Subscription: Azure for Educational Institutions
-  - Defines that we use the free Azure Service provided for Educational Institutions.
+  - Defines that the free Azure Service provided for Educational Institutions is used.
 - Resource Group: Linux
   - Assign a group to manage multiple Virtual Machines in one's Account.
 ### Instance Details
@@ -97,6 +97,7 @@ Inbound Port rules decide on which port the virtual machine can be accessed. Her
 The disk type will be set to Standard HDD to save running costs:  
 ![](../../images/2021-05-12-22-59-58.png)  
 *Figure 7: Setting up Disks - Disk Type*  
+<div style="page-break-after: always;"></div>
 
 
 ### Management - Monitoring
@@ -117,11 +118,14 @@ To connect to the Virtual Machine the Azure Portal provides connection instructi
 
 ![](../../images/2021-05-12-23-21-08.png)  
 *Figure 10: SSH Connection instruction*
+<div style="page-break-after: always;"></div>
 
 The connection using this command will be successful by providing the private key for the connection:  
 
 ![](../../images/2021-05-12-23-23-45.png)  
 *Figure 11: Establishing an SSH Connection*
+<div style="page-break-after: always;"></div>
+
 ## Using the Virtual Machine
 
 ### Basic Commands
