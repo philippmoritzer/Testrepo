@@ -365,8 +365,103 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-13">Chapter 13 -</h2>
+<h2 id="chapter-13---basic-shell-scripting">Chapter 13 - Basic Shell Scripting</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="script-language">Script Language</h3>
+<ul>
+<li>
+<p>Script is a program that runs on the interpreter</p>
+</li>
+<li>
+<p>Unix shell is an interpreter (as well as DOS-Shell)</p>
+</li>
+<li>
+<p>Shell reads the script and runs it line-by-line</p>
+</li>
+<li>
+<p>Languages like C/C++ must be compiled before running</p>
+</li>
+</ul>
+<h3 id="usage">Usage</h3>
+<ul>
+<li>
+<p>Shell Scripts are used for System Administration</p>
+</li>
+<li>
+<p>Automate a vast range of jobs with a few simple scripts</p>
+<ul>
+<li>Save time by automating repetitive jobs</li>
+</ul>
+</li>
+</ul>
+<h3 id="script-file">Script file</h3>
+<p>Script file (text file) using vi</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/sh 
+</span>
+<span class="hljs-comment"># executed by /bin/sh</span>
+<span class="hljs-comment"># Shebang: hash(#), bang(!)</span>
+
+a=1 <span class="hljs-comment"># variable = value</span>
+a=`expr <span class="hljs-variable">$a</span>+1` <span class="hljs-comment"># back quote for expressions</span>
+
+<span class="hljs-built_in">read</span> var <span class="hljs-comment">#read from keyboard and save to variable var</span>
+</div></code></pre>
+<h3 id="example">Example</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/sh
+</span>
+a=1
+b=3
+c=`expr <span class="hljs-variable">$a</span> + <span class="hljs-variable">$b</span> + 2`
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"c is <span class="hljs-variable">$c</span>"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"input a:"</span>
+<span class="hljs-built_in">read</span> a
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"input b:"</span>
+<span class="hljs-built_in">read</span> b
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"a is <span class="hljs-variable">$a</span>, b is <span class="hljs-variable">$b</span>"</span>
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-05-18-11-45-49.png" alt=""></p>
+<h3 id="special-variables">Special Variables</h3>
+<ul>
+<li>? : previous command's exit status</li>
+<li>$ : PID of the current shell</li>
+<li>- : Options at the start-up</li>
+<li>! : PID of the last background process</li>
+<li>0 : script name</li>
+<li>1-9 : command-line arguments 1-9</li>
+<li>- : last argument</li>
+</ul>
+<h3 id="flow-control">Flow Control</h3>
+<ul>
+<li>Test command<pre class="hljs"><code><div>- $ <span class="hljs-built_in">test</span> expression
+- $ [expression]
+</div></code></pre>
+</li>
+<li>Operator: =, &lt;, &gt; !=</li>
+<li>Conditional FLow Control
+<ul>
+<li>If-then-fi, if-then-else-fi, case-in-esac</li>
+</ul>
+</li>
+<li>Iterative Flow Control
+<ul>
+<li>While-do-done, until-do-done</li>
+</ul>
+</li>
+</ul>
+<h3 id="if-condition-example">If condition example</h3>
+<pre class="hljs"><code><div>/usr/ucb/<span class="hljs-built_in">echo</span> -n <span class="hljs-string">'enter a number: '</span> <span class="hljs-built_in">read</span> num
+<span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$num</span> -gt 10
+<span class="hljs-keyword">then</span>
+ <span class="hljs-built_in">echo</span> The number is greater than 10
+<span class="hljs-keyword">else</span>
+ <span class="hljs-built_in">echo</span> The number is less than 10
+<span class="hljs-keyword">fi</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-built_in">bye</span>
+</div></code></pre>
+<p>Output:<br>
+<img src="../../images/2021-05-18-12-30-44.png" alt=""></p>
+
 </body>
 </html>
