@@ -365,8 +365,154 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-14">Chapter 14 -</h2>
+<h2 id="chapter-14---advanced-shell-scripting">Chapter 14 - Advanced Shell Scripting</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="inputoutput-redirection">Input/output redirection</h3>
+<ul>
+<li>
+<p>Three standard files</p>
+<ul>
+<li>STDIN (0): keyboard</li>
+<li>STDOUT (1): monitor</li>
+<li>STDERR (2): monitor</li>
+</ul>
+</li>
+<li>
+<p>Redirection Operator</p>
+<ul>
+<li>&gt; : redirect STDOUT to a file</li>
+<li>&gt;&gt; : appends STDOUT to a file</li>
+<li>&lt; : redirect STDIN to a file</li>
+<li>|:  sends output of a process to input of other process</li>
+<li>&lt;&lt; : Associate input stream until delimiter</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>$ cat &lt;&lt; AAA
+The Cat
+Sat on the
+Mat .
+AAA <span class="hljs-comment"># end string</span>
+</div></code></pre>
+<p><img src="../../images/2021-05-25-14-21-27.png" alt=""></p>
+<pre class="hljs"><code><div>$ find / -name <span class="hljs-string">"*.txt"</span> &gt; out.txt 2&gt; err.txt <span class="hljs-comment"># error output to err.txt, nomral output to out.txt</span>
+</div></code></pre>
+<h3 id="command-substitution">Command Substitution</h3>
+<ul>
+<li>Substutites Results</li>
+<li>Back tick</li>
+<li>
+<pre class="hljs"><code><div>$ Lines=`wc -l textFile`
+$ a=`expr <span class="hljs-variable">$a</span> +1`
+</div></code></pre>
+</li>
+<li>Brace expansion</li>
+</ul>
+<pre class="hljs"><code><div>$ Lines=<span class="hljs-string">"<span class="hljs-variable">$(wc -l textFile)</span>"</span> <span class="hljs-comment"># does not work at sh</span>
+</div></code></pre>
+<p><img src="../../images/2021-05-25-14-26-58.png" alt=""></p>
+<h3 id="shell-variable">Shell variable</h3>
+<pre class="hljs"><code><div>$ a=5 <span class="hljs-comment"># sets a variable to 5</span>
+$ <span class="hljs-built_in">export</span> a <span class="hljs-comment"># makes a a env variable</span>
+$ <span class="hljs-built_in">export</span> b=7 <span class="hljs-comment"># define new env variable</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span> <span class="hljs-comment"># prints a result (5)</span>
+$ <span class="hljs-built_in">set</span> <span class="hljs-comment"># shows all shell variables</span>
+$ env <span class="hljs-comment"># shows all environment variables</span>
+$ <span class="hljs-built_in">set</span> | grep PATH <span class="hljs-comment"># show location of PATH variable</span>
+</div></code></pre>
+<h3 id="shell-functions">Shell functions</h3>
+<ul>
+<li>Function Syntax: name() {commands; }</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-title">Repeat</span></span>() {
+    <span class="hljs-built_in">echo</span> -n <span class="hljs-string">"I don't know <span class="hljs-variable">$1</span> <span class="hljs-variable">$2</span>"</span>
+    <span class="hljs-built_in">return</span> 7
+}
+Repeat Your Name
+<span class="hljs-built_in">echo</span> $?
+<span class="hljs-built_in">exit</span> 0
+</div></code></pre>
+<p><img src="../../images/2021-05-25-14-38-13.png" alt=""></p>
+<h3 id="scope">Scope</h3>
+<ul>
+<li>There are two types of scope
+<ul>
+<li>local &amp; global</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-title">scope</span></span>() {
+    <span class="hljs-built_in">local</span> lov=1 <span class="hljs-comment"># local variable</span>
+    glov=2 <span class="hljs-comment"># global variable</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-built_in">local</span> <span class="hljs-variable">$lov</span> global <span class="hljs-variable">$glov</span>
+}
+scope
+<span class="hljs-built_in">echo</span> <span class="hljs-built_in">local</span> <span class="hljs-variable">$lov</span> global <span class="hljs-variable">$glov</span> 
+</div></code></pre>
+<p>Output:<br>
+´local 1 global 2´<br>
+´local global 2´</p>
+<h3 id="function-libraries">Function Libraries</h3>
+<ul>
+<li>Include function script file using dot(.)</li>
+</ul>
+<pre class="hljs"><code><div>. ./scope.sh <span class="hljs-comment"># read from scope.sh</span>
+scope <span class="hljs-comment"># function call</span>
+</div></code></pre>
+<h3 id="getopts">getopts</h3>
+<ul>
+<li>A built-in command line parser</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> <span class="hljs-built_in">getopts</span> <span class="hljs-string">"abc:def"</span> opt
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-variable">$opt</span> <span class="hljs-keyword">in</span>
+        a) <span class="hljs-built_in">echo</span> a specified::
+        b) <span class="hljs-built_in">echo</span> b specified::
+        c) <span class="hljs-built_in">echo</span> c specified
+            <span class="hljs-built_in">echo</span> <span class="hljs-variable">$OPTARG</span>;;
+        d) <span class="hljs-built_in">echo</span> d specified::
+        e) <span class="hljs-built_in">echo</span> e specified::
+        f) <span class="hljs-built_in">echo</span> f specified
+            <span class="hljs-built_in">echo</span> $ OPTARG::
+    <span class="hljs-keyword">esac</span>
+Done
+</div></code></pre>
+<pre class="hljs"><code><div>$ sh getopts.sh -a -b -c cc -d -e -f ff
+</div></code></pre>
+<p>Output:</p>
+<p><img src="../../images/2021-05-25-16-00-33.png" alt=""></p>
+<h3 id="signals-and-traps">Signals and Traps</h3>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">trap</span> <span class="hljs-string">''</span> 2 <span class="hljs-comment"># single quote, ignore ^c</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-built_in">trap</span> <span class="hljs-string">''</span> 2 
+<span class="hljs-keyword">while</span> [ 1 = 1 ]
+<span class="hljs-keyword">do</span>
+<span class="hljs-built_in">read</span> a
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$a</span> = <span class="hljs-string">'a'</span> ]
+<span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">exit</span>
+<span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> you pressed <span class="hljs-variable">$a</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</div></code></pre>
+<p>Output:</p>
+<p><img src="../../images/2021-05-25-16-04-51.png" alt=""></p>
+<h3 id="file-handling">File Handling</h3>
+<pre class="hljs"><code><div>$ If [ -w writeFIle || -x writeFile ] <span class="hljs-comment"># if file has writeable or executable permission statement will result in true</span>
+
+$ If [ -r writeFile &amp;&amp; -s writeFile ] <span class="hljs-comment"># true if file is readable and size is greater than 0</span>
+</div></code></pre>
+<p>Arguments:</p>
+<ul>
+<li>-d: directory</li>
+<li>-e: file exists</li>
+<li>-r: readable</li>
+<li>-w: writeable</li>
+<li>-x: executable</li>
+<li>-s: size is greater than zero</li>
+</ul>
+
 </body>
 </html>

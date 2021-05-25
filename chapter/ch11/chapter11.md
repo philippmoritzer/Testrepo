@@ -9,7 +9,6 @@
 $ date # shows current date/time
 $ date 201505050001.30 # changes time to 2015/05/5 
 ```
-
 ### Scheduling commands
 
 - Cron
