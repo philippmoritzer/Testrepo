@@ -65,8 +65,16 @@ Router Adress is specified
 ```file
 hosts: files dns
 ```
-
 - If the system is note able to find an ip address of a domain name at the /etc/hosts file ist will send the query request to the DNS Server which is specified in /etc/resolv.conf
+
+### /etc/resolv.conf
+Nameserver (DNS) specified
+```file
+domain seoultech.ac.kr
+nameserver 164.124.101.2
+nameserver 203.248.252.2
+```
+ 
 
 ### Network commands
 
