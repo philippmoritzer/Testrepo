@@ -365,8 +365,73 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-18">Chapter 18 -</h2>
+<h2 id="chapter-18---backup-tools">Chapter 18 - Backup Tools</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="backup-media-types">Backup Media Types</h3>
+<ul>
+<li>Magnetic Tapes</li>
+<li>CD/DVD-Rom</li>
+<li>Zip drives</li>
+<li>Hard drive/network backup</li>
+<li>USB</li>
+</ul>
+<h3 id="backup-types">Backup Types</h3>
+<ul>
+<li>Full backup
+<ul>
+<li>entire system is backed up</li>
+</ul>
+</li>
+<li>Differential Backup
+<ul>
+<li>Only backups that has changed since last full backup</li>
+</ul>
+</li>
+<li>Incremental Backup
+<ul>
+<li>Backup on what has changed since the completion of any type of backup</li>
+</ul>
+</li>
+</ul>
+<h3 id="tar">tar</h3>
+<ul>
+<li>Tape Archive</li>
+<li>Options:
+<ul>
+<li>c - create</li>
+<li>t - show contents</li>
+<li>x - extract</li>
+<li>v - verbose</li>
+<li>f - set filename</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>Options:
+
+$ tar cvf mydir.tar mydir <span class="hljs-comment"># all contents under mydir directory will be bundled to mydir.tar</span>
+$ tar tvf mydir.tar <span class="hljs-comment"># shows content of bundled file</span>
+$ tar xvf mydir.tar <span class="hljs-comment"># extracts tar file</span>
+</div></code></pre>
+<h3 id="compress">compress</h3>
+<p>Compress a file to a smaller file</p>
+<pre class="hljs"><code><div>$ compress mydir.tar <span class="hljs-comment"># compress mydir.tar file -&gt; mydir.tar.Z</span>
+$ uncompress mydir.tar.Z <span class="hljs-comment"># uncrompresses mydir.tar</span>
+$ gzip mydir.tar <span class="hljs-comment"># -&gt; mydir.tar.gz</span>
+$ gzip -d mydir.tar.gz <span class="hljs-comment"># extract file</span>
+$ gunzip mydir.tar.gz <span class="hljs-comment"># extract file</span>
+</div></code></pre>
+<h3 id="example">Example</h3>
+<pre class="hljs"><code><div>$ tar cvf mydir.tar mydir
+$ compress mydir.tar
+$ ftp 10.10.54.75
+ftp&gt; bi
+ftp&gt; put mydir.tar.Z
+ftp&gt;quit
+$ telnet 10.10.54.75
+$ uncompress mydir.tar.Z
+$ tar xvf mydir.tar
+</div></code></pre>
+
 </body>
 </html>
