@@ -365,8 +365,133 @@ code {
           : 'default'
     });
   </script>
-<h2 id="dos">DOS -</h2>
+<h2 id="dos">DOS</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="dos">DOS</h3>
+<ul>
+<li>Disk operating system</li>
+<li>Interpreter between user and computer</li>
+<li>Starting DOS
+<ul>
+<li>Start -&gt; All Programs -&gt; Aux programs -&gt; Command Prompt</li>
+</ul>
+</li>
+<li>Start -&gt; &quot;cmd&quot; -&gt; Enter</li>
+<li>At file Explorer -&gt; (Shift + right-click)</li>
+</ul>
+<h3 id="dos-commands">DOS commands</h3>
+<ul>
+<li>Internal commands
+<ul>
+<li>memory resident</li>
+<li>ver, vol, date, time, cls, dir, md, cd, path, rd, copy con, type, copy, del, ren, prompt</li>
+</ul>
+</li>
+<li>External commands
+<ul>
+<li>disk resident</li>
+<li>xcopy, move, fc, doskey, mem, more, sort, find, attrib, deltree, edit, tree</li>
+</ul>
+</li>
+<li>Capital or small letters are treated the same</li>
+</ul>
+<h3 id="help">help</h3>
+<pre class="hljs"><code><div><span class="hljs-function">C:&gt;<span class="hljs-title">help</span>
+</span></div></code></pre>
+<p><img src="../../images/2021-06-01-15-43-22.png" alt=""></p>
+<ul>
+<li>Similar to Unix man command</li>
+<li>Lists commands</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">help</span> <span class="hljs-built_in">dir</span>
+</div></code></pre>
+<h3 id="dos-commands">Dos commands</h3>
+<ul>
+<li>ver: version number</li>
+<li>vol: volume label</li>
+<li>date: display/set current system date</li>
+<li>time: display/set current system time</li>
+<li>cls: clear screen</li>
+<li>dir: list of directories and files
+<ul>
+<li>Switch: /R /P /W /B /L /A</li>
+</ul>
+</li>
+<li>Path: defines a list of directories for external commands<br>
+Add directory to Path:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-built_in">PATH</span>=<span class="hljs-variable">%PATH%</span>:c:\test
+</div></code></pre>
+<ul>
+<li>rd: delete empty directory</li>
+<li>md: make a new directory</li>
+<li>type: see the contents of an existing file</li>
+<li>del/erase: delete a file</li>
+<li>ren: change the file name</li>
+<li>tree: display directory structure</li>
+<li>prompt=$$: changes prompt symbol</li>
+<li>echo hi &gt; hi.txt: Creates file hi.txt with content hi</li>
+<li>echo hi &gt;&gt; hi.txt: Appends hi to file hi.txt</li>
+<li>copy con hi.txt: Entered Text will be saved to file hi.txt until interrupted by CTRL+Z</li>
+<li>move: moves file(s)</li>
+<li>fc: file compare</li>
+<li>doskey: remember command history</li>
+<li>mem: display total available memory</li>
+<li>atrrib: see attributes of a file</li>
+<li>notepad: start dos editor</li>
+<li>more: see page by page</li>
+<li>sort: arrange data in an order</li>
+<li>find: display lines that has the string</li>
+</ul>
+<h3 id="path-redirection">PATH, Redirection</h3>
+<pre class="hljs"><code><div>&gt; <span class="hljs-built_in">PATH</span>
+&gt; <span class="hljs-built_in">PATH</span>=<span class="hljs-variable">%PATH%</span>;c:\tmp <span class="hljs-built_in">REM</span> adds c:\temp
+&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">%PATH%</span>
+&gt; <span class="hljs-built_in">echo</span> aa &gt; aa.txt
+&gt; <span class="hljs-built_in">echo</span> aaa &gt;&gt; aa.txt
+&gt; <span class="hljs-built_in">type</span> aa.txt <span class="hljs-number">2</span>&gt; err.txt
+&gt; <span class="hljs-built_in">type</span> aa.txt err.txt &gt; a3.txt
+&gt; <span class="hljs-built_in">copy</span> aa.txt + err.txt a4.txt
+</div></code></pre>
+<h3 id="batch-files">Batch files</h3>
+<ul>
+<li>File that has a collection of dos command and control commands</li>
+<li>extension is either .bat or .cmd
+Example:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-built_in">dir</span> %*
+^z
+</div></code></pre>
+<p>ls is usable in the dos afterwards</p>
+<p><img src="../../images/2021-06-01-16-05-13.png" alt=""></p>
+<h3 id="repeat-loop">Repeat loop</h3>
+<pre class="hljs"><code><div>@<span class="hljs-built_in">echo</span> off
+<span class="hljs-keyword">FOR</span> /L <span class="hljs-variable">%%i</span> <span class="hljs-keyword">IN</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>) <span class="hljs-keyword">DO</span>(
+    <span class="hljs-keyword">FOR</span> /L <span class="hljs-variable">%%j</span> <span class="hljs-keyword">IN</span> (<span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span>) <span class="hljs-keyword">DO</span>(
+        <span class="hljs-built_in">echo</span> i = <span class="hljs-variable">%%i</span>, j=<span class="hljs-variable">%%j</span>
+    )
+)
+</div></code></pre>
+<h3 id="comparison-unixdoc-commands">Comparison Unix/doc commands</h3>
+<p><img src="../../images/2021-06-01-16-17-57.png" alt=""></p>
+<h3 id="network-commands">Network commands</h3>
+<pre class="hljs"><code><div>&gt; <span class="hljs-built_in">ipconfig</span> // shows network adapter configuration  
+&gt; <span class="hljs-built_in">ping</span> <span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">54</span>.<span class="hljs-number">75</span> // sends ICMP packet to IP Adress and display <span class="hljs-keyword">if</span> there is a response  
+&gt; telnet <span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">54</span>.<span class="hljs-number">75</span> // establishes telnet connection with destination  
+&gt; ftp <span class="hljs-number">10</span>.<span class="hljs-number">10</span>.<span class="hljs-number">54</span>.<span class="hljs-number">75</span> &gt; establishes ftp connection with destination  
+- <span class="hljs-built_in">cd</span> public_html
+- pwd
+- asc
+- put my.html
+- bi
+- mput *.jpg
+- <span class="hljs-built_in">dir</span>
+- get aa.gif
+- !<span class="hljs-built_in">dir</span>
+- quit
+</div></code></pre>
+
 </body>
 </html>
