@@ -8,7 +8,7 @@
 - BSD License
   - Source code can be modified
   - Modification can not be redistributed
-  - Adverteised so that it's clear that BSD code is used
+  - Advertised so that it's clear that BSD code is used
   - Can be used as proprietary or commercial software
 - GNU Public License (GPL)
   - "Copyright license"
@@ -50,7 +50,7 @@ Schema:
 
 Example:  
 ```makefile
-maketest: main.o sub.o sub2.o
+maketest: main.o sub1.o sub2.o
     gcc -o maketest main.o sub1.o sub2.o
 main.o : main.c my.h
     gcc -c main.c
