@@ -22,7 +22,7 @@ $ vi filename # Opens Vi Editor with file 'filename'
 - Ctrl + U : Half Page Up
 - Ctrl + D : Half Page Down
 - :0, :1 - First Line
-- :$ - Last Line
+- :\$ - Last Line
 - :100 - 100th Line
 - Ctrl + % ( {<--->}) Move in between brackets
 - :set nu - displays line numbers
