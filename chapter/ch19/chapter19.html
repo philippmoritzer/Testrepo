@@ -365,8 +365,67 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-19">Chapter 19 -</h2>
+<h2 id="chapter-19---installing-software-from-source-code">Chapter 19 - Installing Software from Source Code</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="open-source-licensing">Open source Licensing</h3>
+<ul>
+<li>BSD License
+<ul>
+<li>Source code can be modified</li>
+<li>Modification can not be redistributed</li>
+<li>Adverteised so that it's clear that BSD code is used</li>
+<li>Can be used as proprietary or commercial software</li>
+</ul>
+</li>
+<li>GNU Public License (GPL)
+<ul>
+<li>&quot;Copyright license&quot;</li>
+<li>Modified Software can be distributed under the same license</li>
+</ul>
+</li>
+</ul>
+<h3 id="install-lynx-software">Install Lynx Software</h3>
+<p>Lynx is a Text Browser</p>
+<ul>
+<li>Downloaded from lynx.isc.org</li>
+<li>unzip</li>
+</ul>
+<pre class="hljs"><code><div>$ PATH=<span class="hljs-variable">$PATH</span>:/usr/sfw/bin:/usr/ccs/bin:.
+$ <span class="hljs-built_in">export</span> PATH
+$ ./configure
+$ make
+$ make install
+</div></code></pre>
+<p>Run Lynx</p>
+<h3 id="compile-c-program">Compile C Program</h3>
+<pre class="hljs"><code><div>$ gcc hello.c <span class="hljs-comment"># complies hello.c file</span>
+$ gcc -o hello hello.c <span class="hljs-comment"># compiles hello.c and names the output file hello</span>
+$ gcc -c main.c sub1.c sub2.c <span class="hljs-comment"># compiles 3 files in one command</span>
+$ gcc -o maketest main.o sub1.o sub2.o
+$ make -f make.my <span class="hljs-comment"># executes makefile</span>
+</div></code></pre>
+<h3 id="makefilemakefile">makefile/Makefile</h3>
+<p>Schema:<br>
+&lt;default target&gt;: dependency list<br>
+&lt;tab&gt;command<br>
+&lt;target&gt;: depencdency list<br>
+&lt;tab&gt;: dependency list<br>
+...<br>
+&lt;label&gt;:<br>
+&lt;tab&gt;: command</p>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-section">maketest: main.o sub.o sub2.o</span>
+    gcc -o maketest main.o sub1.o sub2.o
+main.o : main.c my.h
+    gcc -c main.c
+sub1.o : sub1.c my.h
+    gcc -c sub1.c
+sub2.o : sub2.c my.h
+    gcc -c sub2.c
+clean :
+    rm -f *.o maketest
+</div></code></pre>
+
 </body>
 </html>
