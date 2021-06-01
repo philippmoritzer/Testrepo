@@ -365,8 +365,85 @@ code {
           : 'default'
     });
   </script>
-<h2 id="chapter-16">Chapter 16 -</h2>
+<h2 id="chapter-16---unix-networking">Chapter 16 - Unix Networking</h2>
 <p><small>Philipp Moritzer - 21170004</small></p>
 <hr/>
+<h3 id="tcpip-protocol">TCP/IP Protocol</h3>
+<ul>
+<li>TCP: Layer 4 of Internet Protocols</li>
+<li>IP: Layer 3 of Internet Protocols</li>
+<li>ICMP: Internet Control Message Protocol (ping, traceroute)</li>
+<li>UDP: Layer 4 Protocol</li>
+<li>ARP: Adress Resolution Protocol (arp -a)</li>
+<li>HTTP: Hypertext Transfer Protocol</li>
+<li>FTP: File Transfer Protocol</li>
+<li>Telnet: Remote Acesss</li>
+<li>SMTP: Simple Mail Transport Protocol</li>
+<li>RIP: Routing Information Protocol</li>
+<li>DNS: Name Server (Resoulves domain name and IP Adress)</li>
+<li>DHCP: Dynamic host configuration protocol</li>
+</ul>
+<h3 id="ip-setup">IP Setup</h3>
+<pre class="hljs"><code><div>$ ifconfig -a <span class="hljs-comment"># shows network interfaces (name, ip, netmask, etc.)</span>
+$ ifconfig e1000g0 plumb <span class="hljs-comment"># automatically sets the ip to the interface</span>
+$ ifconfig e1000g0 10.0.2.5 netmask 255.255.255.0 broadcast 10.0.2.255 <span class="hljs-comment"># sets ip address, subnetmask and broadcast address for network interface e1000g0</span>
+$ ifconfig e1000g0 up <span class="hljs-comment"># starts the e1000g0 interface</span>
+$ route add net default 10.0.2.2 <span class="hljs-comment"># adds 10.0.2.2 (router) as default route</span>
+$ ping 10.10.54.75 <span class="hljs-comment"># icmp message returns if successful</span>
+</div></code></pre>
+<h3 id="network-configuration-files">Network Configuration Files</h3>
+<ul>
+<li>/etc/hostname.e1000g0</li>
+<li>/etc/hosts</li>
+<li>/etc/netmasks</li>
+<li>/etc/defaultrouter</li>
+<li>/etc/resolv.conf</li>
+<li>/etc/nsswitch.conf</li>
+</ul>
+<h3 id="etchostnamee1000g0">/etc/hostname.e1000g0</h3>
+<ul>
+<li>The interface name can be different depending on the system</li>
+<li>Sol300
+<ul>
+<li>IP addresss is located unter /etc/hosts</li>
+</ul>
+</li>
+<li>10.0.2.5 - can bes specified directly</li>
+</ul>
+<h3 id="etchosts">/etc/hosts</h3>
+<p>Contains internal IP Adresses</p>
+<pre class="hljs"><code><div>127.0.0.1   localhost
+10.0.2.5    sol300 sol300.snut.ac.kr loghost
+</div></code></pre>
+<h3 id="etcnetmasks">/etc/netmasks</h3>
+<p>Network address and subnetting netmask is specified</p>
+<pre class="hljs"><code><div>10.0.2.0    255.255.255.0
+</div></code></pre>
+<h3 id="etcdefaultrouter">/etc/defaultrouter</h3>
+<p>Router Adress is specified</p>
+<pre class="hljs"><code><div>10.0.2.2
+</div></code></pre>
+<h3 id="etcnsswtichconf">/etc/nsswtich.conf</h3>
+<pre class="hljs"><code><div>hosts: files dns
+</div></code></pre>
+<ul>
+<li>If the system is note able to find an ip address of a domain name at the /etc/hosts file ist will send the query request to the DNS Server which is specified in /etc/resolv.conf</li>
+</ul>
+<h3 id="network-commands">Network commands</h3>
+<pre class="hljs"><code><div>$ arp -a <span class="hljs-comment"># shows IP address / Mac Adress caching table</span>
+$ ping 10.0.2.2 <span class="hljs-comment"># sends ICMP-Message and receives one if the target is alive</span>
+$ traceroute 10.10.54.75 <span class="hljs-comment"># check route to target and see all the routers on the way</span>
+$ nslookup www.snut.ac.kr <span class="hljs-comment"># Domain name and IP Adress resolution</span>
+$ ftp 10.10.54.75 <span class="hljs-comment"># starts FTP Session to 10.10.54.75</span>
+$ telnet 10.10.54.75 <span class="hljs-comment"># starts Telnet Session to 10.10.54.75</span>
+$ telnet www.snu.ac.kr 80 <span class="hljs-comment"># web page access</span>
+</div></code></pre>
+<h3 id="netstat">netstat</h3>
+<ul>
+<li>Show network status</li>
+<li>-i: status of the interface</li>
+<li>-r: routing table</li>
+</ul>
+
 </body>
 </html>
